@@ -31,16 +31,35 @@
                     {{-- CLIENTE --}}
                     @if(!auth()->user()->esAdmin())
 
-                        <a href="{{ route('appointments.create') }}" class="block p-6 bg-purple-100 rounded">
-                            <h3 class="font-bold text-lg">Reservar Cita</h3>
-                        </a>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                        <a href="{{ url('/catalogo') }}" class="block p-6 bg-purple-100 rounded hover:bg-purple-200">
+                            <!-- MIS CITAS -->
+                            <a href="{{ route('appointments.index') }}"
+                                class="block p-6 bg-white rounded-xl shadow hover:bg-gray-50">
 
-                            <h3 class="font-bold text-lg">Ver Catálogo de Servicios</h3>
-                            <p>Explora los servicios disponibles</p>
+                                <h3 class="text-lg font-bold text-red-700">Mis Citas</h3>
+                                <p class="text-gray-600">Ver todas tus citas</p>
 
-                        </a>
+                            </a>
+
+                            <!-- RESERVAR CITA -->
+                            <a href="{{ route('appointments.create') }}"
+                                class="block p-6 bg-white rounded-xl shadow hover:bg-gray-50">
+
+                                <h3 class="text-lg font-bold text-red-700">Reservar Cita</h3>
+                                <p class="text-gray-600">Agenda un nuevo servicio</p>
+
+                            </a>
+
+                            <!-- CATÁLOGO -->
+                            <a href="{{ url('/catalogo') }}" class="block p-6 bg-white rounded-xl shadow hover:bg-gray-50">
+
+                                <h3 class="text-lg font-bold text-red-700">Catálogo</h3>
+                                <p class="text-gray-600">Ver servicios disponibles</p>
+
+                            </a>
+
+                        </div>
 
                     @endif
 

@@ -13,13 +13,13 @@ https://github.com/Cata-Estrada/App-Salon-de-Belleza.git
 
 ## ⚙️ Tecnologías utilizadas
 
-* Laravel 12
-* PHP 8.x
-* MySQL
-* Blade (Motor de plantillas)
-* Tailwind CSS
-* Composer
-* XAMPP
+- Laravel 12
+- PHP 8.x
+- MySQL
+- Blade (Motor de plantillas)
+- Tailwind CSS
+- Composer
+- XAMPP
 
 ---
 
@@ -95,13 +95,13 @@ http://127.0.0.1:8000
 
 ### 👨‍💼 Administrador
 
-* Email: [admin@appsalon.com](mailto:admin@appsalon.com)
-* Contraseña: admin123
+- Email: [admin@test.com](mailto:admin@test.com)
+- Contraseña: 123456
 
 ### 👤 Cliente
 
-* Email: [cliente@appsalon.com](mailto:cliente@appsalon.com)
-* Contraseña: cliente123
+- Email: [cliente@test.com](mailto:cliente@test.com)
+- Contraseña: 123456
 
 > Nota: Si no existen, pueden registrarse manualmente desde la aplicación.
 
@@ -111,35 +111,35 @@ http://127.0.0.1:8000
 
 ### 🔐 Autenticación
 
-* Registro de usuarios
-* Inicio de sesión
-* Cierre de sesión
+- Registro de usuarios
+- Inicio de sesión
+- Cierre de sesión
 
 ---
 
 ### 👥 Gestión de roles
 
-* Rol administrador
-* Rol cliente
-* Protección de rutas mediante middleware
+- Rol administrador
+- Rol cliente
+- Protección de rutas mediante middleware
 
 ---
 
 ### 👤 CRUD de usuarios (Administrador)
 
-* Crear usuarios
-* Editar usuarios
-* Eliminar usuarios
-* Asignar rol
+- Crear usuarios
+- Editar usuarios
+- Eliminar usuarios
+- Asignar rol
 
 ---
 
 ### 💇‍♀️ CRUD de servicios (Administrador)
 
-* Crear servicios
-* Editar servicios
-* Eliminar servicios
-* Listado de servicios
+- Crear servicios
+- Editar servicios
+- Eliminar servicios
+- Listado de servicios
 
 ---
 
@@ -147,40 +147,41 @@ http://127.0.0.1:8000
 
 #### Cliente:
 
-* Crear citas
-* Seleccionar múltiples servicios
-* Visualizar citas registradas
+- Crear citas
+- Seleccionar múltiples servicios
+- Visualizar citas registradas
 
 #### Sistema:
 
-* Relación muchos a muchos (citas - servicios)
-* Asociación de citas con usuarios
-* Estado de la cita (pendiente)
+- Relación muchos a muchos (citas - servicios)
+- Asociación de citas con usuarios
+- Estado de la cita (pendiente)
 
 ---
 
 ## 🧠 Estructura del proyecto
 
-* `app/Models` → Modelos (User, Service, Appointment)
-* `app/Http/Controllers` → Controladores
-* `resources/views` → Vistas Blade
-* `routes/web.php` → Definición de rutas
-* `database/migrations` → Migraciones de base de datos
+- `app/Models` → Modelos (User, Service, Appointment)
+- `app/Http/Controllers` → Controladores
+- `resources/views` → Vistas Blade
+- `routes/web.php` → Definición de rutas
+- `database/migrations` → Migraciones de base de datos
 
 ---
 
 ## ⚠️ Consideraciones
 
-* Proyecto desarrollado para entorno local
-* Se recomienda usar XAMPP o entorno similar
-* No incluye despliegue en producción
+- Proyecto desarrollado para entorno local
+- Se recomienda usar XAMPP o entorno similar
+- No incluye despliegue en producción
 
 ---
 
 ## 👨‍💻 Autor
 
 Desarrollado por:
-* Catalina Estrada Rivas
-* Arley David Alpala Benavides
-* Cristian Cifuentes Ruiz
-Proyecto académico - Ingeniería de Sistemas
+
+- Catalina Estrada Rivas
+- Arley David Alpala Benavides
+- Cristian Cifuentes Ruiz
+  Proyecto académico - Ingeniería de Sistemas

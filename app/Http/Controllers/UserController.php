@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -19,25 +20,27 @@ class UserController extends Controller
         return view('users.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
-            'apellido' => 'required',
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'telefono' => 'nullable|string',
         ]);
 
         User::create([
-            'name' => $request->name,
-            'apellido' => $request->apellido,
-            'email' => $request->email,
-            'telefono' => $request->telefono,
-            'admin' => $request->admin ? 1 : 0,
-            'password' => Hash::make($request->password),
+            'name' => $validated['name'],
+            'apellido' => $validated['apellido'],
+            'email' => $validated['email'],
+            'telefono' => $validated['telefono'] ?? null,
+            'admin' => $request->has('admin'),
+            'password' => bcrypt($validated['password']),
         ]);
 
-        return redirect()->route('users.index')->with('success', 'Usuario creado');
+        return redirect()->route('users.index')
+            ->with('success', 'Usuario creado correctamente');
     }
 
     public function edit($id)
@@ -50,23 +53,30 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $request->validate([
-            'name' => 'required',
-            'apellido' => 'required',
+        // Validación
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
+            'telefono' => 'nullable|string',
+            'password' => 'nullable|min:6',
         ]);
 
-        $data = $request->all();
-
-        if ($request->password) {
-            $data['password'] = Hash::make($request->password);
+        // Quitar password si está vacío
+        if (empty($validated['password'])) {
+            unset($validated['password']);
+        } else {
+            $validated['password'] = bcrypt($validated['password']);
         }
 
-        $data['admin'] = $request->admin ? 1 : 0;
+        // Admin checkbox
+        $validated['admin'] = $request->has('admin');
 
-        $user->update($data);
+        // Actualizar usuario
+        $user->update($validated);
 
-        return redirect()->route('users.index')->with('success', 'Usuario actualizado');
+        return redirect()->route('users.index')
+            ->with('success', 'Usuario actualizado correctamente');
     }
 
     public function destroy($id)

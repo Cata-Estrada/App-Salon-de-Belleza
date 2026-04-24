@@ -5,39 +5,58 @@ namespace App\Http\Controllers;
 use App\Models\Appointment;
 use App\Models\Service;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class AppointmentController extends Controller
 {
+    //VER MIS CITAS
     public function index()
     {
-        $appointments = Appointment::with('services')->get();
+        $appointments = Appointment::with('services')
+            ->where('user_id', auth()->id())
+            ->get();
+
         return view('appointments.index', compact('appointments'));
     }
 
-    public function create()
+    /**
+     * Mostrar formulario de creación
+     */
+    public function create(): View
     {
-        $services = Service::all();
+        $services = Service::where('activo', true)->get();
         return view('appointments.create', compact('services'));
     }
 
-    public function store(Request $request)
+    /**
+     * Guardar cita
+     */
+    public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'fecha' => 'required|date',
+        $validated = $request->validate([
+            'fecha' => 'required|date|after_or_equal:today',
             'hora' => 'required',
-            'services' => 'required|array'
+            'services' => 'required|array|min:1',
         ]);
 
+        // Obtener servicios seleccionados
+        $services = Service::whereIn('id', $validated['services'])->get();
+
+        // Calcular total
+        $total = $services->sum('precio');
+
+        // Crear cita
         $appointment = Appointment::create([
-            'fecha' => $request->fecha,
-            'hora' => $request->hora,
+            'fecha' => $validated['fecha'],
+            'hora' => $validated['hora'],
             'user_id' => auth()->id(),
-            'estado' => 'pendiente'
+            'total' => $total,
+            'estado' => 'pendiente',
         ]);
 
         // Relación muchos a muchos
-        $appointment->services()->attach($request->services);
+        $appointment->services()->attach($validated['services']);
 
         return redirect()->route('appointments.index')
             ->with('success', 'Cita creada correctamente');
