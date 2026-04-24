@@ -35,6 +35,13 @@
                             <h3 class="font-bold text-lg">Reservar Cita</h3>
                         </a>
 
+                        <a href="{{ url('/catalogo') }}" class="block p-6 bg-purple-100 rounded hover:bg-purple-200">
+
+                            <h3 class="font-bold text-lg">Ver Catálogo de Servicios</h3>
+                            <p>Explora los servicios disponibles</p>
+
+                        </a>
+
                     @endif
 
                 </div>

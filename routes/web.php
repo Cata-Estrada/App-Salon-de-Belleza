@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::get('/appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
     Route::post('/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+    Route::get('/catalogo', [\App\Http\Controllers\ServiceController::class, 'catalogo'])->middleware('auth');
 });
 
 

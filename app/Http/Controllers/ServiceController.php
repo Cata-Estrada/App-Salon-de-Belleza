@@ -57,4 +57,11 @@ class ServiceController extends Controller
         Service::destroy($id);
         return redirect()->route('services.index')->with('success', 'Servicio eliminado');
     }
+
+    //Muestra el catalogo de servicios
+    public function catalogo()
+    {
+        $services = \App\Models\Service::where('activo', 1)->get();
+        return view('services.catalogo', compact('services'));
+    }
 }
