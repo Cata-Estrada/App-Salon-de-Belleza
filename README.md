@@ -96,12 +96,12 @@ http://127.0.0.1:8000
 ### 👨‍💼 Administrador
 
 * Email: [admin@appsalon.com](mailto:admin@appsalon.com)
-* Contraseña: 123456
+* Contraseña: admin123
 
 ### 👤 Cliente
 
 * Email: [cliente@appsalon.com](mailto:cliente@appsalon.com)
-* Contraseña: 123456
+* Contraseña: cliente123
 
 > Nota: Si no existen, pueden registrarse manualmente desde la aplicación.
 
